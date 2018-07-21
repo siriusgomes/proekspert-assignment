@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  node1:
+    image: openjdk:8-jre-alpine
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/home
+    entrypoint: ["java", "-jar", "/home/target/proekspert.assignment-1.0-SNAPSHOT.jar", "node1", "node2", "node3", "node4"]
+
+  node2:
+    image: openjdk:8-jre-alpine
+    restart: always
+    volumes:
+      - ./:/home
+    entrypoint: ["java", "-jar", "/home/target/proekspert.assignment-1.0-SNAPSHOT.jar", "node1", "node2", "node3", "node4"]
+
+  node3:
+    image: openjdk:8-jre-alpine
+    restart: always
+    volumes:
+      - ./:/home
+    entrypoint: ["java", "-jar", "/home/target/proekspert.assignment-1.0-SNAPSHOT.jar", "node1", "node2", "node3", "node4"]
+
+  node4:
+    image: openjdk:8-jre-alpine
+    restart: always
+    volumes:
+      - ./:/home
+    entrypoint: ["java", "-jar", "/home/target/proekspert.assignment-1.0-SNAPSHOT.jar", "node1", "node2", "node3", "node4"]

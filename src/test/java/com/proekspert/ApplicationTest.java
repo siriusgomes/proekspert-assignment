@@ -38,28 +38,10 @@ public class ApplicationTest {
 
     @Test
     public void test00_shouldRevertTree() throws Exception {
-        this.mockMvc.perform(post("/tree")
+        this.mockMvc.perform(post("/treeLocal")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\n" +
-                        "  \"id\": \"2\",\n" +
-                        "  \"left\" : {\n" +
-                        "  \t\"id\": \"1\"\n" +
-                        "  },\n" +
-                        "  \"right\" : {\n" +
-                        "  \t\"id\": \"3\",\n" +
-                        "  \t \"left\" : {\n" +
-                        "\t  \t\"id\": \"5\",\n" +
-                        "\t\t  \t\"left\" : {\n" +
-                        "\t\t  \t\"id\": \"5\"\n" +
-                        "\t\t  }\n" +
-                        "\t  }\n" +
-                        "  }\n" +
-                        "}\n"))
-                .andExpect(content().string(containsString("Node: 2 - Left: 3 - Right: 1\n" +
-                        "Node: 3 - Right: 5\n" +
-                        "Node: 5 - Right: 5\n" +
-                        "Node: 5\n" +
-                        "Node: 1\n")))
+                .content("{\"id\":\"2\",\"left\":{\"id\":\"1\",\"left\":{\"id\":\"6\"}},\"right\":{\"id\":\"3\",\"left\":{\"id\":\"5\",\"left\":{\"id\":\"5\",\"right\":{\"id\":\"20\"}}},\"right\":{\"id\":\"10\"}}}"))
+                .andExpect(content().string(containsString("{\"id\":2,\"left\":{\"id\":3,\"left\":{\"id\":10},\"right\":{\"id\":5,\"right\":{\"id\":5,\"left\":{\"id\":20}}}},\"right\":{\"id\":1,\"right\":{\"id\":6}}}")))
                 .andExpect(status().isOk());
 
     }

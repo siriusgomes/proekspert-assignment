@@ -2,14 +2,14 @@ package com.proekspert;
 
 public class BinaryTreeNode {
 
+    private Integer id;
     private BinaryTreeNode left;
     private BinaryTreeNode right;
-    private Integer id;
 
-    public BinaryTreeNode(BinaryTreeNode left, BinaryTreeNode right, Integer id) {
+    public BinaryTreeNode(Integer id, BinaryTreeNode left, BinaryTreeNode right) {
+        this.id = id;
         this.left = left;
         this.right = right;
-        this.id = id;
     }
 
     public BinaryTreeNode getLeft() {
