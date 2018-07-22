@@ -17,7 +17,7 @@ public class Utils {
         reverseTreeRecursively(node.getRight());
     }
 
-    public static void reverseNode(BinaryTreeNode node) {
+    public static void reverseCurrentNode(BinaryTreeNode node) {
         if (node == null) {
             return;
         }
@@ -52,9 +52,17 @@ public class Utils {
         }
     }
 
+    /**
+     * My primitive load balance based on RANDOMNESS to pick a node url.
+     * */
     public static String getRandomNodeUrl() {
-        int host = new Random().nextInt(Application.listHosts.size());
-        return "http://" + Application.listHosts.get(host) + ":8080";
+        if (Application.listHosts.size() > 0) {
+            int host = new Random().nextInt(Application.listHosts.size());
+            return "http://" + Application.listHosts.get(host) + ":8080";
+        }
+        else {
+            return "http://localhost:8080";
+        }
     }
 
 

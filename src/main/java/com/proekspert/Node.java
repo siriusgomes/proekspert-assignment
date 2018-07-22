@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,9 +48,11 @@ public class Node {
         logger.log(Level.INFO, "Distributed processing the Tree: " + data);
 
         Long millis = System.currentTimeMillis();
-        // Reverts locally.
-        Utils.reverseNode(tree);
 
+        // Reverts actual node locally.
+        Utils.reverseCurrentNode(tree);
+
+        // Calls other nodes to revert left and right subtrees.
         if (tree.getLeft() != null) {
             tree.setLeft(revertRemotely(tree.getLeft(), Utils.getRandomNodeUrl() + "/treeDistributed"));
         }
@@ -79,7 +80,8 @@ public class Node {
             logger.log(Level.WARNING, "Error trying to revert subTree " + subtreeJson + " on the address " + address + ". Reverting locally.");
         }
         if (!hasReverted) {
-            Utils.reverseNode(subTree);
+            Utils.reverseCurrentNode(subTree);
+            returnTree = subTree;
         }
 
         return returnTree;
