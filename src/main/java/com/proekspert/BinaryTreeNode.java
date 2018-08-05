@@ -1,5 +1,7 @@
 package com.proekspert;
 
+import java.util.logging.Level;
+
 public class BinaryTreeNode {
 
     private Integer id;
@@ -10,6 +12,10 @@ public class BinaryTreeNode {
         this.id = id;
         this.left = left;
         this.right = right;
+    }
+
+    public BinaryTreeNode(Integer id) {
+        this.id = id;
     }
 
     public BinaryTreeNode getLeft() {
@@ -36,9 +42,13 @@ public class BinaryTreeNode {
         this.id = id;
     }
 
+    public void copyChildren(BinaryTreeNode node) {
+        this.setLeft(node.getLeft());
+        this.setRight(node.getRight());
+    }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuffer sb = new StringBuffer();
 
         sb.append("Node: " + id);
@@ -48,13 +58,8 @@ public class BinaryTreeNode {
         if (right != null) {
             sb.append(" - Right: " + right.id);
         }
-        sb.append("\n");
-        sb.append(left != null ? left.toString() : "");
-        sb.append(right != null? right.toString() : "");
 
         return sb.toString();
     }
-
-
 
 }
