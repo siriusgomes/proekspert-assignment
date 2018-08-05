@@ -41,6 +41,9 @@ Once the application starts, the following endpoints will be available to receiv
 | Node 1 | http://localhost:8080/treeDistributed | POST | Accepts a POST with the tree that will be reversed in all known nodes. |
 | Node 2 | http://localhost:8082/treeDistributed | POST | Accepts a POST with the tree that will be reversed in all known nodes. |
 | Node 3 | http://localhost:8083/treeDistributed | POST | Accepts a POST with the tree that will be reversed in all known nodes. |
+| Node 1 | http://localhost:8080/nodeLocal | POST | Accepts a POST with a single tree node that will be reversed in this node. |
+| Node 2 | http://localhost:8082/nodeLocal | POST | Accepts a POST with a single tree node that will be reversed in this node. |
+| Node 3 | http://localhost:8083/nodeLocal | POST | Accepts a POST with a single tree node that will be reversed in this node. |
 
 It is also possible to add more nodes to the solution. Basically just copy and paste the node on the `docker-compose.yml` file changing the name of the node (4, 5 and so on), the port that will be mapped to it's 8080 (8084, 8085 and so on) and add the new node as a initialization parameter on the entrypoint of all the nodes to let them know this new node exists:
 
